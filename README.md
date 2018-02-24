@@ -1,6 +1,7 @@
 # Survey
+
 [![Build Status](https://travis-ci.org/AlecAivazis/survey.svg?branch=feature%2Fpretty)](https://travis-ci.org/AlecAivazis/survey)
-[![GoDoc](http://img.shields.io/badge/godoc-reference-5272B4.svg)](https://godoc.org/gopkg.in/AlecAivazis/survey.v1)
+[![GoDoc](http://img.shields.io/badge/godoc-reference-5272B4.svg)](https://godoc.org/github.com/maxchehab/survey)
 
 A library for building interactive prompts. Heavily inspired by the great [inquirer.js](https://github.com/SBoudrias/Inquirer.js/).
 
@@ -11,7 +12,7 @@ package main
 
 import (
     "fmt"
-    "gopkg.in/AlecAivazis/survey.v1"
+    "github.com/maxchehab/survey"
 )
 
 // the questions to ask
@@ -59,16 +60,16 @@ func main() {
 
 1. [Examples](#examples)
 1. [Prompts](#prompts)
-    1. [Input](#input)
-    1. [Password](#password)
-    1. [Confirm](#confirm)
-    1. [Select](#select)
-    1. [MultiSelect](#multiselect)
-    1. [Editor](#editor)
+   1. [Input](#input)
+   1. [Password](#password)
+   1. [Confirm](#confirm)
+   1. [Select](#select)
+   1. [MultiSelect](#multiselect)
+   1. [Editor](#editor)
 1. [Validation](#validation)
-    1. [Built-in Validators](#built-in-validators)
+   1. [Built-in Validators](#built-in-validators)
 1. [Help Text](#help-text)
-    1. [Changing the input rune](#changing-the-input-run)
+   1. [Changing the input rune](#changing-the-input-run)
 1. [Custom Types](#custom-types)
 1. [Customizing Output](#customizing-output)
 1. [Versioning](#versioning)
@@ -79,9 +80,9 @@ Examples can be found in the `examples/` directory. Run them
 to see basic behavior:
 
 ```bash
-go get gopkg.in/AlecAivazis/survey.v1
+go get github.com/maxchehab/survey
 
-cd $GOPATH/src/gopkg.in/AlecAivazis/survey.v1
+cd $GOPATH/src/github.com/maxchehab/survey
 
 go run examples/simple.go
 go run examples/validation.go
@@ -101,7 +102,6 @@ prompt := &survey.Input{
 survey.AskOne(prompt, &name, nil)
 ```
 
-
 ### Password
 
 <img src="https://media.giphy.com/media/26FmQr6mUivkq71GE/giphy.gif" width="400px" />
@@ -114,7 +114,6 @@ prompt := &survey.Password{
 survey.AskOne(prompt, &password, nil)
 ```
 
-
 ### Confirm
 
 <img src="https://media.giphy.com/media/3oKIPgsUmTp4m3eo4E/giphy.gif" width="400px"/>
@@ -126,7 +125,6 @@ prompt := &survey.Confirm{
 }
 survey.AskOne(prompt, &name, nil)
 ```
-
 
 ### Select
 
@@ -172,10 +170,9 @@ prompt := &survey.MultiSelect{..., PageSize: 10}
 
 ### Editor
 
-Launches the user's preferred editor (defined by the $EDITOR environment variable) on a 
-temporary file. Once the user exits their editor, the contents of the temporary file are read in as 
+Launches the user's preferred editor (defined by the $EDITOR environment variable) on a
+temporary file. Once the user exits their editor, the contents of the temporary file are read in as
 the result. If neither of those are present, notepad (on Windows) or vim (Linux or Mac) is used.
-
 
 ## Validation
 
@@ -201,11 +198,11 @@ q := &survey.Question{
 `survey` comes prepackaged with a few validators to fit common situations. Currently these
 validators include:
 
-|    name      |   valid types   |       description                                             |
-|--------------|-----------------|---------------------------------------------------------------|
-| Required     |   any           |   Rejects zero values of the response type                    |
-| MinLength(n) |   string        |   Enforces that a response is at least the given length       |
-| MaxLength(n) |   string        |   Enforces that a response is no longer than the given length |
+| name         | valid types | description                                                 |
+| ------------ | ----------- | ----------------------------------------------------------- |
+| Required     | any         | Rejects zero values of the response type                    |
+| MinLength(n) | string      | Enforces that a response is at least the given length       |
+| MaxLength(n) | string      | Enforces that a response is no longer than the given length |
 
 ## Help Text
 
@@ -226,10 +223,9 @@ In some situations, `?` is a perfectly valid response. To handle this, you can c
 looks for by setting the `HelpInputRune` variable in `survey/core`:
 
 ```golang
-
 import (
-    "gopkg.in/AlecAivazis/survey.v1"
-    surveyCore "gopkg.in/AlecAivazis/survey.v1/core"
+    "github.com/maxchehab/survey"
+    surveyCore "github.com/maxchehab/survey/core"
 )
 
 number := ""
@@ -278,14 +274,14 @@ survey.AskOne(
 Customizing the icons and various parts of survey can easily be done by setting the following variables
 in `survey/core`:
 
-|   name              |     default    |    description                                                    |
-|---------------------|----------------|-------------------------------------------------------------------|
-| ErrorIcon           |       ✘        | Before an error                                                   |
-| HelpIcon            |       ⓘ       | Before help text                                                   |
-| QuestionIcon        |       ?        | Before the message of a prompt                                    |
-| SelectFocusIcon     |       ❯        | Marks the current focus in `Select` and `MultiSelect` prompts     |
-| MarkedOptionIcon    |       ◉        | Marks a chosen selection in a `MultiSelect` prompt                |
-| UnmarkedOptionIcon  |       ◯        | Marks an unselected option in a `MultiSelect` prompt              |
+| name               | default | description                                                   |
+| ------------------ | ------- | ------------------------------------------------------------- |
+| ErrorIcon          | ✘       | Before an error                                               |
+| HelpIcon           | ⓘ       | Before help text                                              |
+| QuestionIcon       | ?       | Before the message of a prompt                                |
+| SelectFocusIcon    | ❯       | Marks the current focus in `Select` and `MultiSelect` prompts |
+| MarkedOptionIcon   | ◉       | Marks a chosen selection in a `MultiSelect` prompt            |
+| UnmarkedOptionIcon | ◯       | Marks an unselected option in a `MultiSelect` prompt          |
 
 ## Versioning
 
@@ -295,5 +291,5 @@ to maintain those releases. Importing version 1 of survey would look like:
 ```golang
 package main
 
-import "gopkg.in/AlecAivazis/survey.v1"
+import "github.com/maxchehab/survey"
 ```

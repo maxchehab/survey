@@ -17,7 +17,7 @@ var (
 	QuestionIcon = "?"
 
 	MarkedOptionIcon   = "◉"
-	UnmarkedOptionIcon = "◯"
+	UnmarkedOptionIcon = "◎"
 
 	SelectFocusIcon = "❯"
 )
